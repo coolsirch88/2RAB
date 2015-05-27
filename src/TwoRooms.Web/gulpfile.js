@@ -1,14 +1,4 @@
-﻿var gulp = require('gulp');
-
-gulp.task('scripts', 'Compile JS files into the app.js', function (cb) {
-    var config = require('./jspm.conf.js');
-    var builder = require('systemjs-builder');
-
-    builder.build('src/app/bootstrap',
-        config,
-        paths.tmp.scripts + 'app.js')
-            .then(cb)
-            .catch(function (ex) {
-                cb(new Error(ex));
-            });
-});
+/// <binding AfterBuild='build' />
+// all gulp tasks are located in the ./build/tasks directory
+// gulp configuration is in files in ./build directory
+require('require-dir')('build/tasks');
