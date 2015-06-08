@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var dnx = require('gulp-dnx');
 var browserSync = require('browser-sync');
 
 // this task utilizes the browsersync plugin
@@ -17,3 +18,8 @@ gulp.task('serve', ['build'], function(done) {
     }
   }, done);
 });
+
+gulp.task('serve-dnx', ['build'], function (cb) {
+    return gulp.start('dnx-run');
+});
+gulp.task('dnx-run', dnx('web'));

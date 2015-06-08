@@ -25,8 +25,14 @@ gulp.task('build-system', function () {
 // copies changed html files to the output directory
 gulp.task('build-html', function () {
   return gulp.src(paths.html)
-    .pipe(changed(paths.output, {extension: '.html'}))
+    .pipe(changed(paths.output, { extension: '.html' }))
     .pipe(gulp.dest(paths.output));
+});
+
+gulp.task('build-style', function () {
+    return gulp.src(paths.style)
+    .pipe(changed(paths.styleOutput, { extension: '.css' }))
+    .pipe(gulp.dest(paths.styleOutput));
 });
 
 // this task calls the clean task (located
@@ -36,7 +42,7 @@ gulp.task('build-html', function () {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html'],
+    ['build-system', 'build-html', 'build-style'],
     callback
   );
 });

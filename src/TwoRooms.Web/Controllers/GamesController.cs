@@ -15,6 +15,7 @@ namespace TwoRooms.Web.Controllers
         public GamesController(IGameRepository repo)
         {
             _gameRepo = repo;
+            //test
         }
         // GET: api/values
         [HttpGet]
