@@ -8,8 +8,8 @@ namespace TwoRooms.Common
 {
     public interface IGameRepository
     {
-        Game FindGame(Guid id);
-        Guid CreateGame(Game create);
-        List<Game> RetrieveGames();
+        Task<Game> FindGame(Guid id);
+        Task<Game> CreateGame(Game create);
+        Task<List<Game>> RetrieveGames();
     }
 }
