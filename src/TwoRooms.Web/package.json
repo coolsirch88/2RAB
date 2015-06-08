@@ -34,6 +34,7 @@
     "gulp-protractor": "^1.0.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-yuidoc": "^0.1.2",
+    "gulp-exec": "^2.1.1",
     "jasmine-core": "^2.3.4",
     "jshint-stylish": "^2.0.0",
     "karma": "^0.12.33",
