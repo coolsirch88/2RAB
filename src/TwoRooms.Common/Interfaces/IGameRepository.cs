@@ -11,5 +11,6 @@ namespace TwoRooms.Common
         Task<Game> FindGame(Guid id);
         Task<Game> CreateGame(Game create);
         Task<List<Game>> RetrieveGames();
+        Task<bool> DeleteGame(Guid id);
     }
 }

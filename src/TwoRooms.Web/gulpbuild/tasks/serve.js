@@ -20,6 +20,5 @@ gulp.task('serve', ['build'], function(done) {
 });
 
 gulp.task('serve-dnx', ['build'], function (cb) {
-    return gulp.start('dnx-run');
+     dnx('web');
 });
-gulp.task('dnx-run', dnx('web'));

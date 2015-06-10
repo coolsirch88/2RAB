@@ -15,22 +15,22 @@ namespace TwoRooms.Web.Controllers
         public GamesController(IGameRepository repo)
         {
             _gameRepo = repo;
-            //test
+            //test23
         }
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<string>> Get()
+        public async Task<IEnumerable<Game>> Get()
         {
             var list = await _gameRepo.RetrieveGames();
-            var nameArr = list.Select(d => d.Name).ToList();
-            return nameArr;
+            return list;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Game> Get(Guid id)
         {
-            return "value";
+            var game = _gameRepo.FindGame(id);
+            return await game;
         }
 
         // POST api/values
@@ -52,8 +52,9 @@ namespace TwoRooms.Web.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(Guid id)
         {
+           await _gameRepo.DeleteGame(id);
         }
     }
 }

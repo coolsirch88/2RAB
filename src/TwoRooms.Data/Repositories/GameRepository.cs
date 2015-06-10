@@ -29,15 +29,25 @@ namespace TwoRooms.Data.Repositories
             return list.FirstOrDefault();
         }
 
-        public Task<Game> FindGame(Guid id)
+        public async Task<Game> FindGame(Guid id)
         {
-            throw new NotImplementedException();
+            var gameCollection = _database.GetCollection<Game>("games");
+            var item = await gameCollection.FindAsync(x => x.Id == id);
+            await item.MoveNextAsync();
+            return item.Current.FirstOrDefault();
         }
 
         public async Task<List<Game>> RetrieveGames()
         {
             var gameCollection = _database.GetCollection<Game>("games");
             return await gameCollection.Find(x => true).ToListAsync();
+        }
+
+        public async Task<bool> DeleteGame(Guid id)
+        {
+            var gameCollection = _database.GetCollection<Game>("games");
+            var result = await gameCollection.DeleteOneAsync(x => x.Id == id);
+            return result.IsAcknowledged;
         }
     }
 }

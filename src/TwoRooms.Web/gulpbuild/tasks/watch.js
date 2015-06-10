@@ -18,3 +18,5 @@ gulp.task('watch-dnx', function() {
 });
 
 gulp.task('watch', ['mongo', 'watch-dnx', 'serve-dnx'], function () { });
+
+gulp.task('watch-small', ['mongo', 'watch-dnx']);
