@@ -1,20 +1,22 @@
 ﻿import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {Router} from 'aurelia-router';
+import {UserHelper} from '../helpers/userHelper';
 
-@inject(HttpClient, Router)
+@inject(HttpClient, Router, UserHelper)
 export class Index{
     heading = 'Games';
     games = [];
     url = '/api/games';
     gameName = '';
 
-    constructor(http, router){
+    constructor(http, router, user){
         this.http = http;
         this.http = http.configure(x => {
             x.withHeader('Content-Type', 'application/json');
         });
         this.router = router;
+        this.user = user;
     }
 
     activate(){
@@ -25,7 +27,9 @@ export class Index{
     }
 
     createGame(){
-        var value = {"Name": `${this.gameName}`, "CurrentPlayers": null, "Leader": null, "Id": null};
+        console.log("User Creating Game:" + this.user.userId);
+        var value = {"Name": `${this.gameName}`, "CurrentPlayers": null, "Leader": {"Id": `${this.user.userId}`, "Name": "", "Card": null}, "Id": null};
+        console.log(value);
         return this.http.post(this.url, value).then(response =>{
             return this.http.get(this.url);
         }).then(response =>{

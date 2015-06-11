@@ -40,7 +40,6 @@ namespace TwoRooms.Web.Controllers
             var game = value;
             game.Id = Guid.NewGuid();
             game.CurrentPlayers = null;
-            game.Leader = null;
             game = await _gameRepo.CreateGame(game);
         }
 
